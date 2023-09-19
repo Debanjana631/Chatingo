@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="http://cdn.tailwindcss.com"></script>
+        <title>{% block title %}{% endblock %}Chat</title>
+        <style>
+            .messages {
+                height: 400px;
+                overflow-y: auto;
+            }
+        </style>
+    </head>
+    <body bgcolor="cad2fb">
+        <nav class="flex items-center justify-between px-4 py-6" style="background-color: #a1a7c6">
+            <div>
+                <a href="/" class="text-xl text-white">Hello</a>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                {% if request.user.is_authenticated %}
+                    <a href="/rooms/" class="px-5 py-3 rounded-xl text-white hover:bg-black">Rooms</a>
+                    <a href="/logout/" class="px-5 py-3 rounded-xl text-white hover:bg-black">Logout</a>
+                {% else %}
+                <a href="/login/" class="px-5 py-3 rounded-xl text-white hover:bg-black">Login</a>
+                <a href="/signup/" class="px-5 py-3 rounded-xl text-white hover:bg-black">Signup</a>
+                {% endif %}
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
